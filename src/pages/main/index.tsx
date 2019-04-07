@@ -11,11 +11,15 @@ import {
 } from "react-native";
 import HeaderMenu from "../../components/header";
 import Category from "../../components/category";
+
 const { width } = Dimensions.get("window");
+import { getToken } from "../../service/auth";
+import api from "../../service/api";
+// import { auth } from "../../service/auth";
 
 export default class Main extends Component {
   state = {
-    indicacoes: [{ name: "a" }, { name: "b" }, { name: "c" }, { name: "d" }],
+    indicacoes: [],
     screenWidth: width
   };
 
@@ -25,11 +29,29 @@ export default class Main extends Component {
     });
   };
 
+  getConteudo = async () => {
+    const token = await getToken();
+
+    api
+      .get("/conteudo", { headers: { token: token } })
+      .then(response => {
+        console.log(response);
+        this.setState({ indicacoes: response.data.body });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  componentWillMount() {
+    this.getConteudo();
+  }
+
   render() {
     const scrollEnabled = this.state.screenWidth > width;
 
     const imgBackGround = require("../../images/background-inicial.png");
-    const clima = require("../../images/clima.png");
+    const clima = require("../../images/vibracoes-containers.png");
     return (
       <ImageBackground
         source={imgBackGround}
@@ -41,8 +63,12 @@ export default class Main extends Component {
             <View style={{ marginLeft: 20 }}>
               <HeaderMenu {...this.props} />
               <View style={styles.content}>
-                {/* <View style={styles.divCarrousel}> */}
-                <View style={{ height: 130, marginTop: 5 }}>
+                <View
+                  style={{
+                    height: 130,
+                    marginTop: 5
+                  }}
+                >
                   <Text style={styles.textDescription}>Indicações</Text>
                   <View
                     style={{
@@ -60,8 +86,9 @@ export default class Main extends Component {
                           <Category
                             key={item}
                             imageUri={clima}
-                            name={item.name}
+                            name={item.titulo}
                             tamanho={130}
+                            descricao={item.descricao}
                           />
                         );
                       })}

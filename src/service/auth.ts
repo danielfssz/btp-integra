@@ -20,6 +20,11 @@ export const onSignIn = (data: any) => {
 
 export const onSignOut = () => AsyncStorage.removeItem(TOKEN_KEY);
 
+export const getToken = async () => {
+  const token = await AsyncStorage.getItem(TOKEN_KEY);
+  return token;
+};
+
 export const isSignedIn = async () => {
   const token = await AsyncStorage.getItem(TOKEN_KEY);
 

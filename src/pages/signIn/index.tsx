@@ -45,8 +45,6 @@ export default class SignIn extends Component<any, {}> {
       }, 1000);
     } else {
       try {
-        this.props.navigation.navigate("SignedIn");
-        return;
         onSignIn({
           registro: this.state.registro,
           senha: this.state.senha
@@ -56,7 +54,7 @@ export default class SignIn extends Component<any, {}> {
             console.log(response);
 
             if (response.data.code == 200) {
-              if (response.data.body.autorizado) {
+              if (response.data.body.token) {
                 this.props.navigation.navigate("SignedIn");
               } else {
                 this.props.navigation.navigate("NotAllowedTime");

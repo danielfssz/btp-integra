@@ -42,7 +42,7 @@ export default class Category extends Component {
           }}
         >
           <Text>{this.props.name}</Text>
-          <Text>sldm</Text>
+          <Text>{this.props.descricao}</Text>
         </View>
       </View>
     );
