@@ -1,11 +1,3 @@
-// import React from "react";
-
-// import AppContainer from "./routes";
-
-// const App = () => <AppContainer />;
-
-// export default App;
-
 import React from "react";
 
 import { createRootNavigator } from "./src/routes";
@@ -40,10 +32,7 @@ export default class App extends React.Component {
       return null;
     }
 
-    console.log("ta logado ou nao" + signed);
     const Layout = createRootNavigator(signed);
     return <Layout />;
-
-    // return createRootNavigator(signed);
   }
 }

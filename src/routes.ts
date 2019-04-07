@@ -1,4 +1,8 @@
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import {
+  createStackNavigator,
+  createSwitchNavigator,
+  createAppContainer
+} from "react-navigation";
 
 import SignIn from "./pages/signIn";
 import Main from "./pages/main";
@@ -9,26 +13,26 @@ const SignedOutRoutes = createStackNavigator({
   }
 });
 
-const SignedInRoutes = createStackNavigator({
-  Logged: {
-    screen: Main
+const SignedInRoutes = createStackNavigator(
+  {
+    Logged: {
+      screen: Main
+    }
+  },
+  {
+    headerMode: "none"
   }
-});
+);
 
 export const createRootNavigator = (signedIn = false) => {
   return createAppContainer(
-    createStackNavigator(
+    createSwitchNavigator(
       {
         SignedIn: { screen: SignedInRoutes },
         SignedOut: { screen: SignedOutRoutes }
       },
       {
-        initialRouteName: signedIn ? "SignedIn" : "SignedOut",
-        headerMode: "none",
-        mode: "modal",
-        navigationOptions: {
-          gesturesEnabled: false
-        }
+        initialRouteName: signedIn ? "SignedIn" : "SignedOut"
       }
     )
   );
