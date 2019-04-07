@@ -6,6 +6,7 @@ import {
 
 import SignIn from "./pages/signIn";
 import Main from "./pages/main";
+import NotAllowedTime from "./pages/notAllowedTime";
 
 const SignedOutRoutes = createStackNavigator({
   Login: {
@@ -29,6 +30,7 @@ export const createRootNavigator = (signedIn = false) => {
     createSwitchNavigator(
       {
         SignedIn: { screen: SignedInRoutes },
+        NotAllowedTime,
         SignedOut: { screen: SignedOutRoutes }
       },
       {

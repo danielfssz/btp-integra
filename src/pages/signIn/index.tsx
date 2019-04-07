@@ -49,8 +49,6 @@ export default class SignIn extends Component<any, {}> {
         this.setState({ error: "" });
       }, 1000);
     } else {
-      console.log("certinho");
-
       try {
         onSignIn({
           registro: this.state.registro,
@@ -61,7 +59,11 @@ export default class SignIn extends Component<any, {}> {
             console.log(response);
 
             if (response.data.code == 200) {
-              this.props.navigation.navigate("SignedIn");
+              if (response.data.body.autorizado) {
+                this.props.navigation.navigate("SignedIn");
+              } else {
+                this.props.navigation.navigate("NotAllowedTime");
+              }
             } else {
               if (response.data.code == 401) {
                 this.setState({
