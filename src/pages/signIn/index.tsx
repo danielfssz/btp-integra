@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
 import {
   View,
@@ -50,6 +49,8 @@ export default class SignIn extends Component<any, {}> {
       }, 1000);
     } else {
       try {
+        this.props.navigation.navigate("SignedIn");
+        return;
         onSignIn({
           registro: this.state.registro,
           senha: this.state.senha
