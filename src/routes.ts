@@ -33,12 +33,10 @@ export const createRootNavigator = (signedIn = false) => {
       {
         SignedIn: { screen: SignedInRoutes },
         NotAllowedTime,
-        Perfil: { screen: Perfil }, //tirar
         SignedOut: { screen: SignedOutRoutes }
       },
       {
-        // initialRouteName: signedIn ? "SignedIn" : "SignedOut"
-        initialRouteName: "Perfil"
+        initialRouteName: signedIn ? "SignedIn" : "SignedOut"
       }
     )
   );
