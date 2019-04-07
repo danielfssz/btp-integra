@@ -26,10 +26,6 @@ export default class SignIn extends Component<any, {}> {
     error: ""
   };
 
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   handleregistroChange = (registro: any) => {
     this.setState({ registro });
   };

@@ -39,7 +39,7 @@ export default class Main extends Component {
         <SafeAreaView>
           <ScrollView>
             <View style={{ marginLeft: 20 }}>
-              <HeaderMenu />
+              <HeaderMenu {...this.props} />
               <View style={styles.content}>
                 {/* <View style={styles.divCarrousel}> */}
                 <View style={{ height: 130, marginTop: 5 }}>

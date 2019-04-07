@@ -44,6 +44,9 @@ export default class HeaderMenu extends Component {
                 uri:
                   "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg"
               }}
+              onPress={() => {
+                this.props.navigation.navigate("Perfil");
+              }}
             />
           }
         />
